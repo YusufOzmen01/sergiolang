@@ -1,19 +1,70 @@
 from cpu import CPU
 from memory import Memory
 import time
+import sys
+import os
 
 def argError(line, var, type):
     print("ArgumentError: Argument cannot be empty.\nException at line {}\nExpected: {} as {}\n".format(line, var, type))
 
 
 memory = Memory(8192)    # 8KD (8192 Data)
-cpu = CPU(memory,100000) # 100KHz
+cpu = CPU(memory,100000) # 100KP (Kilo Processing)
 
-fi = input('Filename : ')
 debug = False
-if fi[0] == ';':
-    print("Debug mod enabled. Every executed instruction will be printed. To disable it, remove ; from filename.")
-    debug = True
+
+try:
+    if sys.argv[1] == "--verbose":
+        debug = True
+        try:
+            fi = sys.argv[2]
+        except:
+            print("""
+            sergiolang usage : main.py filename [--verbose]
+    
+            --verbose : Enables verbose mode.
+            --help, -h : Shows this menu.
+    
+            """)
+            sys.exit()
+    else:
+        fi = sys.argv[1]
+    try:
+        if sys.argv[2] == "--verbose":
+            debug = True
+        else:
+            print("""
+            sergiolang usage : main.py filename [--verbose]
+    
+            --verbose : Enables verbose mode.
+            --help, -h : Shows this menu.
+    
+            """)
+            sys.exit()
+            
+        
+    except:
+        pass
+    
+    if fi == "--help" or fi == "-h":
+        print("""
+        sergiolang usage : main.py filename [--verbose]
+    
+        --verbose : Enables verbose mode.
+        --help, -h : Shows this menu.
+    
+        """)
+        sys.exit()
+except:
+    print("""
+    sergiolang usage : main.py filename [--verbose]
+    
+    --verbose : Enables verbose mode.
+    --help, -h : Shows this menu.
+    
+    """)
+    sys.exit()
+
 
 fi = fi.replace(';','')
 

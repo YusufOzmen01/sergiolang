@@ -51,35 +51,37 @@ class CPU:
             self.memory.memory[int(addr[3])] = int(self.memory.memory[int(addr[1])]) + int(self.memory.memory[int(addr[2])])
         except:
             return 2
-
+        return True
     def absStr(self, addr):
         try:
             self.memory.memory[int(addr[3])] = str(self.memory.memory[int(addr[1])]) + str(self.memory.memory[int(addr[2])])
         except:
             return 2
-
+        return True
+        
     def sub(self, addr):
         try:
             self.memory.memory[int(addr[3])] = int(self.memory.memory[int(addr[1])]) - int(self.memory.memory[int(addr[2])])
         except:
             return 2
-
+        return True
     def div(self, addr):
         try:
             self.memory.memory[int(addr[3])] = int(self.memory.memory[int(addr[1])]) // int(self.memory.memory[int(addr[2])])
         except:
             return 2
-
+        return True
     def mul(self, addr):
         try:
             self.memory.memory[int(addr[3])] = int(self.memory.memory[int(addr[1])]) * int(self.memory.memory[int(addr[2])])
         except:
             return 2
-    
+        return True
     # IO
     
     def inp(self, addr):
         self.memory.memory[int(addr[1])] = input(self.memory.memory[int(addr[2])])
-
+        return True
     def print(self, addr):
         print(self.memory.memory[int(addr[1])])
+        return False
